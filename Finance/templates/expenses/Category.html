@@ -1,0 +1,35 @@
+{% extends 'base.html'%} {% block content %}
+
+{%  ifequal error 'no'  %}
+
+  <script type="text/javascript">
+    alert('Category ADDED SUCCESSFULLY!');
+    window.location=('{% url "category"  %}');
+  </script>
+
+  {% endifequal %}
+
+  {%  ifequal error 'yes'  %}
+
+  <script type="text/javascript">
+    alert(' PLEASE TRY AGAIN !');
+  </script>
+
+  {% endifequal %}
+<div class="container mt-3">
+  <br>  
+  <h5>Add Category</h5>
+  <form  method="post">
+    {% csrf_token %}
+    <div class="input-group">
+      <input class="form-control" type="text" name="category" placeholder="Category" required><br>
+      <div class="input-group-append">
+        <input class="btn btn-outline-secondary" type="submit" value="Save" />
+      </div>
+    </div>
+  </form>
+</div>
+
+<hr />
+
+{% endblock %}

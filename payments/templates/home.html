@@ -1,0 +1,10 @@
+<h1>Buy for 5.00 rs</h1>
+<form action="{% url 'charge' %}" method="post">
+    {% csrf_token %}
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button">
+        data-key="pk_test_51IjN4VSEJ6QVnZjEQSOroCaOsyLts7eUawF0lSBaxX1GCOtlGvFNR1EvbMQqgh8hyoyPB81PW29HyIEAGyxwguHK00tuGbZ7ta"
+        data-description="Payment Gateway"
+        data-amount="500"
+        data-locale="auto"
+    </script>
+</form>

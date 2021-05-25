@@ -1,0 +1,86 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-10">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'Accounts'%}">Accounts</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Edit Account
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="col-md-2">
+      <a
+        href="{% url 'account-delete' accounts.id %}"
+        class="btn btn-danger btn-sm"
+        >Delete</a
+      >
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <form action="{% url 'edit-account' accounts.id %}" method="post">
+        {% include 'partials/_messages.html'%} {% csrf_token %}
+        <div class="form-group">
+          <label for="">Name</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="name"
+            value="{{values.name}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="">Bank Account</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="B_A"
+            value="{{values.O_B}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="">Opening Balance</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="O_B"
+            value="{{values.O_B}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="">Account Number</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="A_N"
+            value="{{values.A_N}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="">Description</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="des"
+            value="{{values.des}}"
+          />
+        </div>
+        <input
+          type="submit"
+          value="Submit"
+          class="btn btn-primary btn-primary-sm"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

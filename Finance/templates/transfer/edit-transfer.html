@@ -1,0 +1,90 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-10">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'transfer'%}">Transfer</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Edit Existing Transfer
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="col-md-2">
+      <a
+        href="{% url 'transfer-delete' transfer.id %}"
+        class="btn btn-danger btn-sm"
+        >Delete</a
+      >
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <form action="{% url 'edit-transfer' transfer.id %}" method="post">
+        {% include 'partials/_messages.html'%} {% csrf_token %}
+        <div class="form-group">
+          <label for="">Transfer From</label>
+          <select class="form-control" name="account_from">
+            {% for acc in accounts%}
+            <option name="category" value="{{acc.bank_account}}"
+              >{{acc.bank_account}}</option
+            >
+
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="">Transfer To</label>
+          <select class="form-control" name="account_to">
+            {% for acc in accounts%}
+            <option name="category" value="{{acc.bank_account}}"
+              >{{acc.bank_account}}</option
+            >
+
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="">Amount</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="amount"
+            value="{{values.amount}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="">Note</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="note"
+            value="{{valuesnote}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="">Date</label>
+          <input
+            type="Date"
+            class="form-control form-control-sm"
+            name="date"
+            value="{{values.date}}"
+          />
+        </div>
+        <input
+          type="submit"
+          value="Submit"
+          class="btn btn-primary btn-primary-sm"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

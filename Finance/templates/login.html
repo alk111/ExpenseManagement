@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+</head>
+<body>
+
+	{%  ifequal error 'no'  %}
+
+	<script type="text/javascript">
+
+		alert('LOGGED IN SUCCESSFULLY!');
+		window.location=('{% url 'expenses'  %}');
+
+	</script>
+
+	{% endifequal %}
+
+	{%  ifequal error 'yes'  %}
+
+	<script type="text/javascript">
+		alert('INVALID LOGIN PLEASE TRY AGAIN !');
+		window.location=('{% url 'login'  %}');
+	</script>
+
+	{% endifequal %}
+
+	
+	<div class="container mt-5" style="font-family: 'monotype corsiva'">
+		<div class="row">
+			<div class="col-sm-6">
+				<h2 >New Users</h2>
+				<HR>
+				<h5>Creating an account with our website will let u do downloading and uploading process and more....</h5>	
+				<a href="{% url 'signup' %}" class="btn btn-danger text-white mt-5"> Create an account</a>
+			</div>
+
+			<div class="col-sm-6">
+				<h2  >User Login</h2>
+				<HR>
+				<form method="post">
+					{% csrf_token %}
+				<label>EMAIL ADDRESS</label>
+					<input class="form-control" type="email" name="emailid" placeholder="abc@gmail.com"><br>
+				<label>PASSWORD</label>
+					<input class="form-control"  type="password" name="pwd" placeholder="Enter Password">	
+					<input type="submit" class="btn btn-danger mt-2" value="Login">
+
+				</form>
+					
+			</div>
+		</div>
+		
+	</div>
+</body>
+
+</html>

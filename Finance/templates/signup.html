@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>signup</title>
+</head>
+<body>
+	
+	{%  ifequal error 'no'  %}
+
+	<script type="text/javascript">
+		alert('SIGNED-UP SUCCESSFULLY!');
+		window.location=('{% url 'login'  %}');
+	</script>
+
+	{% endifequal %}
+
+	{%  ifequal error 'yes'  %}
+
+	<script type="text/javascript">
+		alert('INVALID Sign-Up PLEASE TRY AGAIN !');
+		
+	</script>
+
+	{% endifequal %}
+
+	<div class="container mt-5" style="font-family: 'monotype corsiva';color:blue">
+			<div class="col-sm-6">
+				<h2  >Register With Us</h2>
+				<h6>If  You Don't Have Any Account, Signup Here ...</h6>
+				<HR>
+				<form method="POST">
+					{% csrf_token %}
+				<label>FIRST NAME</label>
+					<input class="form-control" type="text" name="fname" placeholder="first name"><br>
+				<label>LAST NAME</label>
+					<input class="form-control"  type="text" name="lname" placeholder="last name"><br>	
+				<label>CONTACT NO.</label>
+					<input class="form-control" type="text" name="contact" placeholder="10 digit number"><br>
+				<label>EMAIL ADDRESS</label>
+					<input class="form-control" type="email" name="emailid" placeholder="abc@gmail.com"><br>
+				<label>PASSWORD</label>
+					<input class="form-control"  type="password" name="pwd" placeholder="Enter Password">	
+					<input type="submit" class="btn btn-danger mt-2" value="SignUp">
+				</form><br>
+					
+			</div>
+		</div>
+		
+	</div>
+</body>
+
+</html>
